@@ -1,0 +1,30 @@
+{
+  "name": "vela-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/inversify": "^2.0.33",
+    "@types/inversify-express-utils": "^2.0.0",
+    "@types/mongoose": "^5.11.97",
+    "install": "^0.13.0",
+    "inversify": "^6.0.1",
+    "inversify-binding-decorators": "^4.0.0",
+    "inversify-express-utils": "^6.4.3",
+    "mongoose": "^7.0.2",
+    "npm": "^9.6.2",
+    "reflect-metadata": "^0.1.13",
+    "require-all": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  }
+}
