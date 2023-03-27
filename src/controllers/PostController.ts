@@ -1,7 +1,10 @@
-import { BaseHttpController, controller, httpGet, requestParam } from 'inversify-express-utils';
+import { controller, httpPost, httpGet, request, response, BaseHttpController, requestParam } from 'inversify-express-utils';
 import { inject } from 'inversify';
-import { TYPES } from '../constants/types';
+import { Request, Response } from 'express';
+import { PostService } from '../services/PostService';
 import { IPostService } from '../interfaces/IPostService';
+import { TYPES } from '../constants/types';
+import { IPost } from '../models/Post';
 
 @controller('/posts')
 export class PostController extends BaseHttpController {
@@ -13,8 +16,7 @@ export class PostController extends BaseHttpController {
 
   @httpGet('/latest')
   public async getLatestPosts() {
-    return {post: "Hello world"};
-    //return this.postService.getLatestPosts();
+    return this.postService.getLatestPosts(5);
   }
 
   @httpGet('/')
@@ -31,6 +33,15 @@ export class PostController extends BaseHttpController {
   @httpGet('/about')
   public async getAbout() {
     return this.postService.getAbout();
+  }
+
+  @httpPost('/create')
+  public async createPost(@request() req: Request, @response() res: Response) {
+    const post: IPost = req.body;
+
+    let retPost = this.postService.createPost(post.title, post.content, "developer");
+
+    res.status(201).json({ success: true, data: retPost });
   }
 }
 
